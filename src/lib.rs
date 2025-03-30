@@ -23,9 +23,12 @@ pub use segmenter::Segmenter;
 ///
 /// An implementation of `Stream` that yields `Result<String, SegmenterError>`.
 /// Errors during I/O or segmentation will be returned as `Err` variants in the stream.
-pub fn sentences_stream<R>(reader: R, options: SegmentOptions) -> impl Stream<Item = Result<String>>
+pub fn sentences_stream<'a, R>(
+    reader: R,
+    options: SegmentOptions,
+) -> impl Stream<Item = Result<String>> + 'a
 where
-    R: AsyncRead + Unpin + Send + 'static,
+    R: AsyncRead + Unpin + Send + 'a,
 {
     stream! {
         let mut segmenter = match Segmenter::new(options) {
@@ -96,11 +99,11 @@ where
     }
 }
 
-// Example Usage (Optional, for testing within the lib)
 #[cfg(test)]
 mod tests {
     use super::*;
     use futures::pin_mut;
+    use futures::StreamExt;
     use tokio::io::Result as TokioResult; // Alias to avoid conflict
 
     // A simple mock reader
