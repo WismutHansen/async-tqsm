@@ -1,0 +1,29 @@
+[package]
+name = "async-tqsm"
+version = "0.1.0"
+edition = "2021"
+description = "Asynchronous, streaming sentence segmenter based on tqsm"
+license = "MIT"
+repository = "..."
+
+[dependencies]
+libtqsm = { git = "https://github.com/WismutHansen/tqsm", branch = "main", package = "libtqsm" }
+
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
+async-stream = "0.3"
+clap = { version = "4", features = ["derive"] }
+anyhow = "1.0"
+thiserror = "1.0"                               # Optional, for more structured errors
+regex = "1.11.1"
+unicode-segmentation = "1.12.0"
+
+# For library usage
+[lib]
+name = "async_tqsm"   # Library name
+crate-type = ["rlib"]
+
+# For CLI usage
+[[bin]]
+name = "async-tqsm"            # Binary executable name
+path = "src/bin/async-tqsm.rs"
