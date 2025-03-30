@@ -1,6 +1,6 @@
 # async-tqsm
 
-Asynchronous, streaming sentence segmentation based on a fork of [tqsm](https://github.com/mush42/tqsm).
+Asynchronous, streaming sentence segmentation based on [tqsm](https://github.com/mush42/tqsm).
 
 This project extends the rule-based sentence segmentation capabilities of `libtqsm` to support asynchronous, chunk-by-chunk processing, making it suitable for real-time applications and Unix pipelines.
 
