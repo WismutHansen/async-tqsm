@@ -5,6 +5,7 @@ edition = "2021"
 description = "Asynchronous, streaming sentence segmenter based on tqsm"
 license = "MIT"
 repository = "https://github.com/WismutHansen/async-tqsm.git"
+homepage = "https://github.com/WismutHansen/async-tqsm"
 
 [dependencies]
 libtqsm = { git = "https://github.com/WismutHansen/tqsm", branch = "main", package = "libtqsm" }
@@ -27,3 +28,8 @@ crate-type = ["rlib"]
 [[bin]]
 name = "async-tqsm"
 path = "src/bin/async-tqsm.rs"
+
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
